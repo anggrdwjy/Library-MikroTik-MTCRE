@@ -2,10 +2,10 @@
 
 ## Daftar Isi
 
-A. [Module 1: Static Routing](#1-module-1-static-routing)
-B. [Module 2: Point to Point Addressing](#2-module-2-point-to-point-addressing)
-C. [Module 3: VPN, VLAN, dan QinQ](#3-module-3-vpn-vlan-dan-qinq)
-D. [Module 4: OSPF](#4-module-4-ospf)
+- [Module 1: Static Routing](#1-module-1-static-routing)
+- [Module 2: Point to Point Addressing](#2-module-2-point-to-point-addressing)
+- [Module 3: VPN, VLAN, dan QinQ](#3-module-3-vpn-vlan-dan-qinq)
+- [Module 4: OSPF](#4-module-4-ospf)
 
 ## 1. Module 1: Static Routing
 
