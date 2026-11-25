@@ -2,7 +2,7 @@
 
 ## 1. Module 1: Static Routing
 
-Static routing adalah routing yang Anda tulis manual. Kelebihannya: bersifat deterministik, mudah dibaca, dan mudah diaudit. Kekurangannya: routing statis tidak adaptif secara otomatis apabila topologi berubah. Karena itu di operasi nyata, static digunakan untuk: default gateway, link khusus, failover sederhana, dan policy routing.
+Static routing adalah routing manual. Kelebihannya: bersifat deterministik, mudah dibaca, dan mudah diaudit. Kekurangannya: routing statis tidak adaptif secara otomatis apabila topologi berubah. Karena itu di operasi nyata, static digunakan untuk: default gateway, link khusus, failover sederhana, dan policy routing.
 
 ### 1.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Module 1
 
