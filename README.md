@@ -2,13 +2,10 @@
 
 ## Daftar Isi
 
-1. [Module 1: Static Routing](#1-module-1-static-routing)
-2. [Module 2: Point to Point Addressing](#2-module-2-point-to-point-addressing)
-3. [Module 3: VPN, VLAN, dan QinQ](#3-module-3-vpn-vlan-dan-qinq)
-4. [Module 4: OSPF](#4-module-4-ospf)
-5. [Appendix A: Cheat Sheet Perintah Operasi](#5-appendix-a-cheat-sheet-perintah-operasi)
-6. [Appendix B: Matriks Troubleshooting Cepat](#6-appendix-b-matriks-troubleshooting-cepat)
-7. [Appendix C: Ringkasan Perberbedaan Konfigurasi RouterOS 6.49 dan 7.2](#7-appendix-c-ringkasan-perberbedaan-konfigurasi-routeros-649-dan-72)
+A. [Module 1: Static Routing](#1-module-1-static-routing)
+B. [Module 2: Point to Point Addressing](#2-module-2-point-to-point-addressing)
+C. [Module 3: VPN, VLAN, dan QinQ](#3-module-3-vpn-vlan-dan-qinq)
+D. [Module 4: OSPF](#4-module-4-ospf)
 
 ## 1. Module 1: Static Routing
 
