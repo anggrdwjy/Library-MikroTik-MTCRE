@@ -2,12 +2,12 @@
 
 ## Daftar Isi
 
-- [Module 1: Static Routing](#1-module-1-static-routing)
-- [Module 2: Point to Point Addressing](#2-module-2-point-to-point-addressing)
-- [Module 3: VPN, VLAN, dan QinQ](#3-module-3-vpn-vlan-dan-qinq)
-- [Module 4: OSPF](#4-module-4-ospf)
+- [Modul 1. Static Routing](#module-1-static-routing)
+- [Modul 2. Point to Point Addressing](#module-2-point-to-point-addressing)
+- [Modul 3. VPN, VLAN, dan QinQ](#module-3-vpn-vlan-dan-qinq)
+- [Modul 4. OSPF](#module-4-ospf)
 
-## 1. Module 1: Static Routing
+## Module 1. Static Routing
 
 Static routing adalah routing yang ditulis secara manual. Kelebihannya: bersifat deterministik, mudah dibaca, dan mudah diaudit. Kekurangannya: routing statis tidak adaptif secara otomatis apabila topologi berubah. Karena itu di operasi nyata, static digunakan untuk: default gateway, link khusus, failover sederhana, dan policy routing.
 
@@ -231,7 +231,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 ```
 
 
-## 2. Module 2: Point to Point Addressing
+## Modul 2. Point to Point Addressing
 
 Point to Point (PtP) adalah cara memberi alamat IP untuk link yang hanya menghubungkan dua router. Pada link seperti ini, network address dan broadcast address tidak dibutuhkan, karena hanya terdapat dua ujung. Dengan PtP, Dapat menghemat IP dan membuat konfigurasi lebih bersih.
 
@@ -346,7 +346,7 @@ Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus 
 ```
 
 
-## 3. Module 3: VPN, VLAN, dan QinQ
+## Module 3. VPN, VLAN, dan QinQ
 
 VPN menghubungkan dua jaringan melalui jaringan publik seolah-olah mereka satu jaringan privat. VLAN memisahkan jaringan di dalam satu infrastruktur fisik. Keduanya sering digunakan bersamaan: VPN untuk antar site, VLAN untuk antar divisi di dalam site.
 
@@ -657,7 +657,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 ```
 
 
-## 4. Module 4: OSPF
+## Module 4. OSPF
 
 OSPF adalah routing dinamis yang membuat router saling bertukar informasi topologi, lalu masing-masing menghitung jalur terbaik sendiri. Kelebihannya: jika ada link putus, router otomatis mencari jalur lain tanpa harus diubah manual. Kekurangannya: lebih kompleks dan harus dirancang area-nya dengan benar.
 
