@@ -2,16 +2,16 @@
 
 ## Daftar Isi
 
-- [Modul 1. Static Routing](#module-1-static-routing)
-- [Modul 2. Point to Point Addressing](#module-2-point-to-point-addressing)
-- [Modul 3. VPN, VLAN, dan QinQ](#module-3-vpn-vlan-dan-qinq)
-- [Modul 4. OSPF](#module-4-ospf)
+- [Modul 1. Static Routing](#Modul-1-static-routing)
+- [Modul 2. Point to Point Addressing](#Modul-2-point-to-point-addressing)
+- [Modul 3. VPN, VLAN, dan QinQ](#Modul-3-vpn-vlan-dan-qinq)
+- [Modul 4. OSPF](#Modul-4-ospf)
 
-## Module 1. Static Routing
+## Modul 1. Static Routing
 
 Static routing adalah routing yang ditulis secara manual. Kelebihannya: bersifat deterministik, mudah dibaca, dan mudah diaudit. Kekurangannya: routing statis tidak adaptif secara otomatis apabila topologi berubah. Karena itu di operasi nyata, static digunakan untuk: default gateway, link khusus, failover sederhana, dan policy routing.
 
-### 1.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Module 1
+### 1.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Modul 1
 
 Gunakan tabel berikut sebagai referensi cepat sebelum membaca detail modul. Kolom konfigurasi menampilkan perintah inti yang berbeda pada kedua versi.
 
@@ -130,7 +130,7 @@ Recursive gateway digunakan untuk failover yang lebih cerdas: gateway default ti
 
 Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk menyelesaikan gateway lain. Target-scope adalah scope yang dicari. Aturan praktis: route ke IP pantau harus memiliki scope 10, route default yang menggunakan IP pantau harus memiliki scope 30 dan target-scope 10. Jika terjadi kesalahan penempatan, recursive tidak akan berjalan dan route akan terlihat tidak aktif.
 
-### 1.8 Studi kasus Module 1: Dual ISP dengan pemisahan trafik
+### 1.8 Studi kasus Modul 1: Dual ISP dengan pemisahan trafik
 
 **Situasi:** HQ memiliki dua ISP. ISP 1 cepat tetapi sering putus di siang hari. ISP 2 lambat tetapi stabil. Manajemen minta: (1) jika ISP 1 putus, internet pindah otomatis ke ISP 2, (2) trafik Finance selalu melalui ISP 2, (3) trafik server cadangan (192.168.10.100) selalu melalui ISP 1 saat ISP 1 hidaktif, tetapi boleh pindah ke ISP 2 jika ISP 1 mati.
 
@@ -156,7 +156,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 /tool traceroute 8.8.8.8
 ```
 
-### 1.9 Verifikasi dan operasi Module 1
+### 1.9 Verifikasi dan operasi Modul 1
 
 ```routeros
 # Periksa route aktif dan distance
@@ -178,7 +178,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 - **Dokumentasi:** setiap route harus memiliki comment yang menjelaskan pemilik dan tujuannya. Route tanpa comment adalah hutang teknis.
 
 
-### 1.10 Perbandingan RouterOS 6.49 dan 7.2 untuk Module 1
+### 1.10 Perbandingan RouterOS 6.49 dan 7.2 untuk Modul 1
 
 | Aspek | RouterOS 6.49 | RouterOS 7.2 |
 |---|---|---|
@@ -191,7 +191,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 
 **Implikasi:** Apabila dilakukan migrasi konfigurasi policy routing dari 6.49, tabel routing di v7 wajib dibuat ulang. Konfigurasi lama yang hanya menulis `routing-mark` pada route tidak akan berfungsi tanpa tabel yang didefinisikan terlebih dahulu.
 
-#### Perberbedaan Konfigurasi Module 1: Policy Routing
+#### Perberbedaan Konfigurasi Modul 1: Policy Routing
 
 **RouterOS 6.49 - Policy routing Finance via WAN2:**
 ```routeros
@@ -212,7 +212,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 /ip route add dst-address=0.0.0.0/0 gateway=203.0.113.1 distance=1
 ```
 
-#### Perberbedaan Konfigurasi Module 1: Recursive Gateway dan Scope
+#### Perberbedaan Konfigurasi Modul 1: Recursive Gateway dan Scope
 
 **RouterOS 6.49:**
 ```routeros
@@ -235,7 +235,7 @@ Penjelasan scope: scope adalah seberapa jauh route ini boleh digunakan untuk men
 
 Point to Point (PtP) adalah cara memberi alamat IP untuk link yang hanya menghubungkan dua router. Pada link seperti ini, network address dan broadcast address tidak dibutuhkan, karena hanya terdapat dua ujung. Dengan PtP, Dapat menghemat IP dan membuat konfigurasi lebih bersih.
 
-### 2.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Module 2
+### 2.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Modul 2
 
 | Aspek | Konfigurasi RouterOS 6.49 | Konfigurasi RouterOS 7.2 | Perberbedaan Utama |
 |---|---|---|---|
@@ -273,7 +273,7 @@ Point to Point (PtP) adalah cara memberi alamat IP untuk link yang hanya menghub
 
 Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus diisi IP lawan, bukan network address. Jika diisi 10.0.12.0, ping akan gagal walau IP terlihat benar. Kesalahan tersebut paling sering muncul dalam ujian MTCRE.
 
-### 2.3 Studi kasus Module 2: Hemat IP untuk 20 link antar site
+### 2.3 Studi kasus Modul 2: Hemat IP untuk 20 link antar site
 
 **Situasi:** ISP memiliki 20 link antar POP dan hanya memiliki satu blok /28 (16 alamat) untuk semua link. Jika gunakan /30, satu link membutuhkan 4 alamat, sehingga 20 link membutuhkan 80 alamat, tidak cukup.
 
@@ -294,7 +294,7 @@ Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus 
 # [BR] 10.10.0.6/32 network=10.10.0.5
 ```
 
-### 2.4 Verifikasi dan operasi Module 2
+### 2.4 Verifikasi dan operasi Modul 2
 
 ```routeros
 # Periksa IP dan status interface
@@ -312,7 +312,7 @@ Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus 
 - **Troubleshooting:** jika interface aktif tetapi route terhubunged tidak muncul, periksa apakah ada IP yang duplikat atau interface salah. Jika ping berhasil dari satu arah saja, periksa firewall dan pastikan tidak ada drop di chain input.
 
 
-### 2.5 Perbandingan RouterOS 6.49 dan 7.2 untuk Module 2
+### 2.5 Perbandingan RouterOS 6.49 dan 7.2 untuk Modul 2
 
 | Aspek | RouterOS 6.49 | RouterOS 7.2 |
 |---|---|---|
@@ -323,7 +323,7 @@ Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus 
 
 **Implikasi:** Modul ini merupakan modul yang paling stabil antar versi. Konfigurasi yang sama dapat digunakan pada 6.49 dan 7.2 tanpa penyesuaian.
 
-#### Perberbedaan Konfigurasi Module 2: Point to Point
+#### Perberbedaan Konfigurasi Modul 2: Point to Point
 
 **RouterOS 6.49 dan 7.2 - Konfigurasi identik:**
 ```routeros
@@ -346,11 +346,11 @@ Perhatikan field network di cara 2. Di RouterOS, untuk PtP, field network harus 
 ```
 
 
-## Module 3. VPN, VLAN, dan QinQ
+## Modul 3. VPN, VLAN, dan QinQ
 
 VPN menghubungkan dua jaringan melalui jaringan publik seolah-olah mereka satu jaringan privat. VLAN memisahkan jaringan di dalam satu infrastruktur fisik. Keduanya sering digunakan bersamaan: VPN untuk antar site, VLAN untuk antar divisi di dalam site.
 
-### 3.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Module 3
+### 3.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Modul 3
 
 | Aspek | Konfigurasi RouterOS 6.49 | Konfigurasi RouterOS 7.2 | Perberbedaan Utama |
 |---|---|---|---|
@@ -527,7 +527,7 @@ RouterBOARD memiliki switch chip yang dapat memproses VLAN di perangkat keras, j
 
 Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan bridge VLAN filtering (sub-bab 3.6) karena sudah terintegrasi dengan perangkat keras offload. Cara switch chip lama masih ada untuk model tertentu, tetapi jangan campur keduanya di perangkat yang sama.
 
-### 3.9 Studi kasus Module 3: Kantor cabang terhubung aman dengan VLAN yang sama
+### 3.9 Studi kasus Modul 3: Kantor cabang terhubung aman dengan VLAN yang sama
 
 **Situasi:** HQ dan BR harus merasa satu jaringan untuk aplikasi lama yang hanya berjalan di satu subnet (192.168.10.0/24). Tetapi koneksi harus terenkripsi, dan di HQ ada pemisahan Staff dan Guest.
 
@@ -556,7 +556,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 /ip firewall mangle add chain=forward protocol=tcp tcp-flags=syn action=change-mss new-mss=1380 passthrough=yes comment="MSS for VPN"
 ```
 
-### 3.10 Verifikasi dan operasi Module 3
+### 3.10 Verifikasi dan operasi Modul 3
 
 ```routeros
 # Periksa tunnel aktif
@@ -577,7 +577,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 - **Keamanan:** jangan gunakan PPTP untuk data sensitif. Ganti kata sandi PPP secara berkala dan jangan gunakan kata sandi yang sama untuk IPsec secret dan PPP secret.
 
 
-### 3.11 Perbandingan RouterOS 6.49 dan 7.2 untuk Module 3
+### 3.11 Perbandingan RouterOS 6.49 dan 7.2 untuk Modul 3
 
 | Aspek | RouterOS 6.49 | RouterOS 7.2 |
 |---|---|---|
@@ -593,7 +593,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 
 **Implikasi:** Apabila WireGuard atau container dibutuhkan, wajib menggunakan 7.2. Apabila hanya menggunakan EoIP/IPIP dan VLAN sederhana, konfigurasi 6.49 dapat dipindahkan dengan penyesuaian minor pada parameter yang dihapus.
 
-#### Perberbedaan Konfigurasi Module 3: WireGuard
+#### Perberbedaan Konfigurasi Modul 3: WireGuard
 
 **RouterOS 6.49 - Tidak tersedia:**
 ```routeros
@@ -610,7 +610,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 /ip route add dst-address=192.168.20.0/24 gateway=10.255.1.2
 ```
 
-#### Perberbedaan Konfigurasi Module 3: VLAN - Switch Chip vs Bridge VLAN Filtering
+#### Perberbedaan Konfigurasi Modul 3: VLAN - Switch Chip vs Bridge VLAN Filtering
 
 **RouterOS 6.49 - Switch chip (model tertentu):**
 ```routeros
@@ -630,7 +630,7 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 # Performa inter-VLAN lebih baik karena FastPath/FastTrack pada bridge vlan-filtering
 ```
 
-#### Perberbedaan Konfigurasi Module 3: EoIP dan PPPoE
+#### Perberbedaan Konfigurasi Modul 3: EoIP dan PPPoE
 
 **RouterOS 6.49 - EoIP:**
 ```routeros
@@ -657,11 +657,11 @@ Catatan: di RouterOS v7 dan perangkat baru, cara yang disarankan adalah gunakan 
 ```
 
 
-## Module 4. OSPF
+## Modul 4. OSPF
 
 OSPF adalah routing dinamis yang membuat router saling bertukar informasi topologi, lalu masing-masing menghitung jalur terbaik sendiri. Kelebihannya: jika ada link putus, router otomatis mencari jalur lain tanpa harus diubah manual. Kekurangannya: lebih kompleks dan harus dirancang area-nya dengan benar.
 
-### 4.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Module 4
+### 4.0 Kolom Perbandingan dan Konfigurasi RouterOS v6 dan v7 - Modul 4
 
 | Aspek | Konfigurasi RouterOS 6.49 | Konfigurasi RouterOS 7.2 | Perberbedaan Utama |
 |---|---|---|---|
@@ -854,7 +854,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 /routing ospf instance set ospf-1 out-filter-chain=ospf-out in-filter-chain=ospf-in
 ```
 
-### 4.10 Studi kasus Module 4: OSPF multi-area dengan failover otomatis
+### 4.10 Studi kasus Modul 4: OSPF multi-area dengan failover otomatis
 
 **Situasi:** HQ, R2, dan BR terhubung dengan dua jalur: jalur utama HQ-R2-BR (cepat, 1 Gbps) dan jalur cadangan HQ-BR langsung (lambat, 10 Mbps, via tunnel). Manajemen minta: jika jalur utama putus, trafik pindah otomatis ke jalur cadangan dalam hitungan detik, tanpa konfigurasi manual.
 
@@ -894,7 +894,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 /routing ospf interface-template set [find networks=10.0.12.0/30] hello-interval=2s dead-interval=8s
 ```
 
-### 4.11 Verifikasi dan operasi Module 4
+### 4.11 Verifikasi dan operasi Modul 4
 
 ```routeros
 # Periksa neighbor dan state
@@ -918,7 +918,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 - **Pemantauan:** pantau jumlah LSA dan jumlah route OSPF. Lonjakan LSA yang tiba-tiba dapat berarti ada loop atau router yang flapping.
 
 
-### 4.12 Perbandingan RouterOS 6.49 dan 7.2 untuk Module 4
+### 4.12 Perbandingan RouterOS 6.49 dan 7.2 untuk Modul 4
 
 | Aspek | RouterOS 6.49 | RouterOS 7.2 |
 |---|---|---|
@@ -932,7 +932,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 
 **Implikasi:** Migrasi OSPF dari 6.49 ke 7.2 bukan sekadar salin-tempel. Konfigurasi OSPF wajib ditulis ulang menggunakan instance, area, dan interface-template. Filter dan redistribusi juga harus ditulis ulang menggunakan sintaks filter baru.
 
-#### Perberbedaan Konfigurasi Module 4: OSPF Single Area
+#### Perberbedaan Konfigurasi Modul 4: OSPF Single Area
 
 **RouterOS 6.49 - OSPF:**
 ```routeros
@@ -956,7 +956,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 /routing ospf interface print
 ```
 
-#### Perberbedaan Konfigurasi Module 4: OSPF Filter dan Redistribusi
+#### Perberbedaan Konfigurasi Modul 4: OSPF Filter dan Redistribusi
 
 **RouterOS 6.49 - Filter lama:**
 ```routeros
@@ -973,7 +973,7 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 /routing filter rule add chain=ospf-out rule="if (dst in 192.168.0.0/16) { set ospf-metric-type=type-1; accept; }"
 ```
 
-#### Perberbedaan Konfigurasi Module 4: BGP
+#### Perberbedaan Konfigurasi Modul 4: BGP
 
 **RouterOS 6.49 - BGP:**
 ```routeros
@@ -1035,9 +1035,9 @@ Filter OSPF mengontrol route mana yang boleh masuk atau keluar. Filter yang sala
 
 | Modul | Konfigurasi v6 | Konfigurasi v7 | Tindakan Migrasi |
 |---|---|---|---|
-| Module 1 - Static Routing | `routing-mark` langsung pada route, `/ip route rule` | Buat `/routing table` dahulu, `/routing rule`, `/routing route` untuk pemantauan | Tulis ulang policy routing, buat tabel baru |
-| Module 2 - PtP | `/ip address` sama | `/ip address` sama | Tidak ada perubahan, dapat disalin langsung |
-| Module 3 - VPN | Tanpa WireGuard, EoIP dengan `arp`, PPPoE dengan PAP | WireGuard bawaan, EoIP tanpa `arp`, PPPoE tanpa PAP | Ganti VPN ke WireGuard bila perlu, periksa parameter yang dihapus |
-| Module 3 - VLAN | Switch chip lama pada model tertentu | Bridge VLAN filtering disarankan, FastPath/FastTrack | Pindahkan ke bridge VLAN filtering |
-| Module 4 - OSPF | `/routing ospf network`, filter lama | `instance` + `area` + `interface-template`, filter baru | Tulis ulang OSPF dan filter |
-| Module 4 - BGP | `instance` + `peer`, single-thread | `terhubungion` + `template` + `session`, multi-thread | Tulis ulang BGP dan filter |
+| Modul 1 - Static Routing | `routing-mark` langsung pada route, `/ip route rule` | Buat `/routing table` dahulu, `/routing rule`, `/routing route` untuk pemantauan | Tulis ulang policy routing, buat tabel baru |
+| Modul 2 - PtP | `/ip address` sama | `/ip address` sama | Tidak ada perubahan, dapat disalin langsung |
+| Modul 3 - VPN | Tanpa WireGuard, EoIP dengan `arp`, PPPoE dengan PAP | WireGuard bawaan, EoIP tanpa `arp`, PPPoE tanpa PAP | Ganti VPN ke WireGuard bila perlu, periksa parameter yang dihapus |
+| Modul 3 - VLAN | Switch chip lama pada model tertentu | Bridge VLAN filtering disarankan, FastPath/FastTrack | Pindahkan ke bridge VLAN filtering |
+| Modul 4 - OSPF | `/routing ospf network`, filter lama | `instance` + `area` + `interface-template`, filter baru | Tulis ulang OSPF dan filter |
+| Modul 4 - BGP | `instance` + `peer`, single-thread | `terhubungion` + `template` + `session`, multi-thread | Tulis ulang BGP dan filter |
